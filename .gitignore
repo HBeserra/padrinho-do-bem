@@ -1,0 +1,12 @@
+# Ignora os binarios de programas e plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Ignora todas as variaveis de ambiente
+**/env.json
