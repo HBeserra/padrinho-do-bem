@@ -12,7 +12,15 @@ func EnvironmentSetup() {
 	var envKey map[string]string // Guarda as variáveis de ambiente temporariamente
 
 	fileIo, err := os.Open("env.json")
-	defer fileIo.Close() // defer executa a liberação do recurso apos a func executar.
+
+	// defer executa a liberação do recurso apos a func executar.
+	defer func(fileIo *os.File) {
+		err = fileIo.Close()
+		if err != nil {
+			println("error while closing file: ", err.Error())
+			panic(err)
+		}
+	}(fileIo)
 
 	if err != nil {
 		panic("fail to open file: " + err.Error())
@@ -22,7 +30,6 @@ func EnvironmentSetup() {
 
 	if err != nil {
 		log.Fatal(err)
-		panic("failed to read file: " + err.Error())
 	}
 
 	err = json.Unmarshal(rawFile, &envKey) // Atribui as chaves e valores do json a envKey
