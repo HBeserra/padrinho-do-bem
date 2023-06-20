@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-backend/app"
 	"go-backend/config"
+	"go-backend/entity"
 	"log"
 	"net/http"
 )
@@ -21,6 +22,10 @@ func main() {
 			"status": "online",
 		})
 	})
+
+	doc, _ := entity.NewDocument("413.037.478-80")
+
+	print(doc.GetDocumentStr())
 
 	app.StartServer(server)
 
