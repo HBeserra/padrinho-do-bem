@@ -86,7 +86,6 @@ end;
 CREATE TABLE `children`
 (
     id                 INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    cpf                INT UNSIGNED unique,
     name               varchar(255) NOT NULL,
     brith_date         date         NOT NULL,
     gender             enum ('male', 'female'),

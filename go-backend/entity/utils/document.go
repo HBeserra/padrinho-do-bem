@@ -1,4 +1,4 @@
-package entity
+package utils
 
 import (
 	"errors"
@@ -58,4 +58,8 @@ func (d Document) GetDocumentStr() string {
 	default:
 		return ""
 	}
+}
+
+func (d Document) GetDocumentType() DocumentType {
+	return d.documentType
 }

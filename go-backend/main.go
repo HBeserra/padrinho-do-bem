@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-backend/app"
 	"go-backend/config"
-	"go-backend/entity"
+	"go-backend/entity/utils"
 	"log"
 	"net/http"
 )
@@ -23,7 +23,7 @@ func main() {
 		})
 	})
 
-	doc, _ := entity.NewDocument("413.037.478-80")
+	doc, _ := utils.NewDocument("413.037.478-80")
 
 	print(doc.GetDocumentStr())
 

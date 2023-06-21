@@ -2,6 +2,7 @@ package entity
 
 import (
 	"errors"
+	"go-backend/entity/utils"
 	"time"
 )
 
@@ -18,7 +19,7 @@ type User struct {
 	fullName    string
 	displayName string
 	email       string
-	document    Document
+	document    utils.Document
 	//address	AddressType
 	birthDate time.Time
 }
@@ -44,7 +45,7 @@ func (u *User) GetUserType() UserType {
 	return u.userType
 }
 
-func (u *User) GetDocument() Document {
+func (u *User) GetDocument() utils.Document {
 	return u.document
 }
 
@@ -62,7 +63,7 @@ func (u *User) GetAge() int {
 }
 
 func (u *User) SetBrithDate(d time.Time) error {
-	if(int(time.Since(u.birthDate).Hours() / 24 / 365) <= 16){
+	if int(time.Since(u.birthDate).Hours()/24/365) <= 16 {
 		return errors.New("user must be older than 16 years")
 	}
 
@@ -71,7 +72,31 @@ func (u *User) SetBrithDate(d time.Time) error {
 }
 
 func (u *User) SetName(name string) error {
-	
+
+	if len(name) <= 1 {
+		return errors.New("name must be grater than 1 character")
+	}
+
+	if len(name) >= 255 {
+		return errors.New("name is too long")
+	}
+
+	u.fullName = name
+
+	return nil
+}
+
+func (u *User) SetDisplayName(name string) error {
+
+	if len(name) <= 1 {
+		return errors.New("name must be grater than 1 character")
+	}
+
+	if len(name) >= 255 {
+		return errors.New("name is too long")
+	}
+
+	u.displayName = name
 
 	return nil
 }
